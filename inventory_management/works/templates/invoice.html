@@ -76,10 +76,11 @@
             
             <tr class="thead-dark text-center">
                 <th style="width: 30%">Particular</th> 
-                <th>Weight(kg)</th>
                 <th>Qty</th>
-                <th>Rate</th> 
-                <th>Amount</th>
+                <th>Rate</th>
+                <th>Amount</th> 
+                <th>Total</th>
+
             </tr>
             
             <tr class="text-center">
@@ -94,7 +95,7 @@
                         <h5 class="value1" style="margin-top: 10%; margin-bottom: 0"></h5>
                     </div>
                 </td>            
-                <td>
+                <!-- <td>
                     <INPUT class="form-control" TYPE="number" NAME="weight1" placeholder="Weight">
                     <div class="input-group" style="margin-top: 2%">
                         <INPUT class="form-control" TYPE="number" NAME="bags1" placeholder="">
@@ -102,15 +103,18 @@
                             <span class="input-group-text" id="basic-addon1">Bags</span>
                         </div>
                     </div>  
-                </td>
+                </td> -->
                 <td><INPUT class="form-control" TYPE="number" NAME="quantity1" placeholder="Quantity"></td>
                 <td>
                     <div><h5 class="amount1"></h5></div>
+                    <!-- <INPUT class="amount1" TYPE="number" NAME="amount1" placeholder="Amount"> -->
                 </td>
                 <td><INPUT class="form-control" TYPE="number" NAME="amount1" placeholder="Amount"></td>
+                <!-- <td colspan="2"><b class="float-right">Total: </b></td> -->
+                <td><INPUT TYPE="number" NAME="total" placeholder="total" class="form-control"></td>
             </tr>
             
-            <tr class="text-center">
+            <!-- <tr class="text-center">
                     <td style="text-align: left;">
                         <h5>End Pieces:</h5>
                     </td>            
@@ -142,17 +146,17 @@
                                 <span class="input-group-text" id="basic-addon1">Bags</span>
                             </div>
                         </div> 
-                    </td>
+                    </td> 
                     <td><INPUT class="form-control" TYPE="number" NAME="quantity3" placeholder="Quantity"></td>
                     <td>
                         <div><h5 class="amount3"></h5></div>
                     </td>
                     <td><INPUT class="form-control" TYPE="number" NAME="amount3" placeholder="Amount"></td>
-                </tr>
+                </tr>-->
             
             <tr>
                 <td colspan="2" rowspan="2">
-                    <div class="input-group">
+                    <!-- <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">DRG No</span>
                         </div>
@@ -164,10 +168,9 @@
                             <span class="input-group-text" id="basic-addon1">Melt No</span>
                         </div>
                         <INPUT TYPE="TEXT" NAME="melt-no" placeholder="Melt No." class="form-control">
-                    </div>
+                    </div> -->
                 </td>
-                <td colspan="2"><b class="float-right">Total: </b></td>
-                <td><INPUT TYPE="number" NAME="total" placeholder="total" class="form-control"></td>
+                
             </tr>
              
             <tr>
@@ -203,9 +206,9 @@
             
             <tr>
                 <td colspan="2">
-                    <div class="input-group">
+                    <!-- <div class="input-group">
                         <b>Total Weight</b> :<INPUT style="margin-left: 2%" TYPE="number" NAME="total-weight" class="form-control" placeholder="Total Weight">
-                    </div>
+                    </div> -->
                 </td>
                 <td colspan="3">
                     <div class="input-group">
@@ -317,7 +320,7 @@
 
     $("input[name=quantity2]").on("keyup", function(){
         var quantity = $(this).val();
-        var weight = $("#weight2").val();
+        // var weight = $("#weight2").val();
         var amount = $(".amount2").text();
         $("input[name=amount2").val(amount * quantity);
 

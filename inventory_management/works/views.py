@@ -121,6 +121,7 @@ def generate_pdf(request):
     return redirect('get_pdf')
 
 def get_pdf(request):
+    # print(request.session['context'])
     pdf = render_to_pdf('pdf/invoice_generator.html', request.session['context'])
     if pdf:
         response = HttpResponse(pdf, content_type='application/pdf')
