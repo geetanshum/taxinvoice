@@ -62,7 +62,7 @@ def generate_pdf(request):
     context = request.GET.copy()
     request.session['context'] = context
     context['date'] = datetime.datetime.strptime(context.get('date'), '%Y-%m-%d').strftime('%d-%m-%Y')
-    context['dated'] = datetime.datetime.strptime(context.get('dated'), '%Y-%m-%d').strftime('%d-%m-%Y')
+    # context['dated'] = datetime.datetime.strptime(context.get('dated'), '%Y-%m-%d').strftime('%d-%m-%Y')
     context['amount_in_words'] = num2words.number_to_words(round(float(context.get('grand_total')), 2)) + ' only'
     code            = request.GET.get('code1')
     particular      = request.GET.get('vendor_name1')
@@ -71,10 +71,10 @@ def generate_pdf(request):
     quantity        = request.GET.get('quantity1')
     rate            = request.GET.get('rate1')
     amount          = request.GET.get('amount1')
-    weight          = request.GET.get('weight1')
-    scrap_weight    = request.GET.get('weight2')
-    end_pieces      = request.GET.get('weight3')
-    total_weight    = request.GET.get('total_weight')
+    # weight          = request.GET.get('weight1')
+    # scrap_weight    = request.GET.get('weight2')
+    # end_pieces      = request.GET.get('weight3')
+    # total_weight    = request.GET.get('total_weight')
 
     # If user enters the same challan number then the previous record for that paricular challan number
     # is deleted and new record is overriden onto the old one
@@ -87,10 +87,6 @@ def generate_pdf(request):
                     quantity=quantity,
                     rate=rate,
                     amount=amount,
-                    weight=weight,
-                    scrap_weight=scrap_weight,
-                    end_pieces=end_pieces,
-                    total_weight=total_weight
                 )
         report.save()
 
@@ -107,10 +103,6 @@ def generate_pdf(request):
                     quantity=quantity,
                     rate=rate,
                     amount=amount,
-                    weight=weight,
-                    scrap_weight=scrap_weight,
-                    end_pieces=end_pieces,
-                    total_weight=total_weight
                 )
         report.save()
 
@@ -121,8 +113,9 @@ def generate_pdf(request):
     return redirect('get_pdf')
 
 def get_pdf(request):
+    # print("deepaak")
     # print(request.session['context'])
-    pdf = render_to_pdf('pdf/invoice_generator.html', request.session['context'])
+    pdf = render_to_pdf('pdf/invoice_generator.html', request.session['context'])   
     if pdf:
         response = HttpResponse(pdf, content_type='application/pdf')
         filename = "Melt_Invoice_{}.pdf".format(request.session.get('context').get('challan_number'))
@@ -237,7 +230,10 @@ def homepage(request):
     return redirect('invoice_generator_assembly')
 
 def invoice_generator_melt(request):
-    challan_number = ChallanNumber.objects.get(id=1)
+    try:
+        challan_number = ChallanNumber.objects.get(id=1)
+    except ChallanNumber.DoesNotExist:
+        challan_number = None
     works = Work.objects.all().order_by('code')
     hsc   = HSCNumber.objects.all()
     context = {
@@ -248,7 +244,10 @@ def invoice_generator_melt(request):
     return render(request, 'invoice.html', context)
 
 def invoice_generator_assembly(request):
-    challan_number = ChallanNumber.objects.get(id=1)
+    try:
+        challan_number = ChallanNumber.objects.get(id=1)
+    except ChallanNumber.DoesNotExist:
+        challan_number = None
     works = Work.objects.all().order_by('code')
     hsc   = HSCNumber.objects.all()
     context = {

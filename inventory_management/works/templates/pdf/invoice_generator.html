@@ -33,11 +33,6 @@ body{
   clear:both;
 }
 
-.left{
-  /* float: left; */
-  /* display: inline-block; */
-}
-
 .right{
   /* float: right; */
   /* display: inline-block; */
@@ -68,8 +63,8 @@ body{
   </tr> 
 
   <tr>
-    <td colspan = "3"><b>Invoice No : {{ challan_number }}</b> <b>Date :</b> {{ date }} <br> <b>Vendor No :</b> V0113<br> <b>HSN/ SAC Code : </b>{{ hsc_number }}</td>
-    <td colspan = "2"><b>PO No :</b> {{ po_number }} <br><b>JC No :</b> {{ jc_number }} </td>
+    <td colspan = "3"><b>Invoice No : {{ challan_number }}</b> <b>Date :</b> {{ date }} <br> <!--<b>Vendor No :</b> V0113<br>--> <b>HSN/ SAC Code : </b>{{ hsc_number }}</td>
+    <!-- <td colspan = "2"><b>PO No :</b> {{ po_number }} <br><b>JC No :</b> {{ jc_number }} </td> -->
   </tr>
 
   <tr>
@@ -125,7 +120,7 @@ body{
 
 <tr>
     <td colspan="5">
-        Rs. {{ amount_in_words }}
+       <b> Rs. {{ amount_in_words }}</b>
     </td>
 </tr>
 

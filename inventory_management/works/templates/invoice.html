@@ -6,21 +6,23 @@
     <thead class="thead-dark text-center">
         <tr>
             <th colspan="5">
-                <h3><br>Vaibhav Engineering works</h3>
-                <h5>Sr.no.51, Pune, Warje-Malwadi</h5>
+                <h3><br>Rahul Kalara Mobile</h3>
+                <h5>Haripur kalan Dehradun</h5>
+                <h5>Mobile No:1234567890,03211654987</h5>
+                <h5>Email : test@gmail</h5>
+                <h5> <b>GSTIN</b> : 27APGPM6700G1ZZ </h5>
             </th>
         </tr>
     </thead>
-    <tbody style="background-color: white;">
+    <tbody style="background-color: white; width: auto;">
             <tr>
                 <td colspan = "3">
                     <div class="input-group text-center">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">To, M/S</span>
                         </div>
-                        <INPUT TYPE="TEXT" NAME="company-name" autocomplete="on" id="company-name" class="form-control" value="VANAZ ENGINEERS LTD, 85/1, PAUD ROAD, PUNE-38">  
+                        <INPUT TYPE="TEXT" NAME="company-name" autocomplete="on" id="company-name" class="form-control" placeholder="Customer Name">  
                     </div> 
-                    <br><b>GSTIN</b> : 27AAACV6873B1ZA
                     <div class="input-group" style="margin-top: 2%">
                             <b>HSN Code:</b>
                             <select id="get_hsc_value" class="form-control" style="margin-left: 2%">
@@ -31,7 +33,19 @@
                             </select>
                     </div>
                 </td>
-                <td colspan = "2">
+                <td colspan = "2" style="vertical-align: middle">
+                    <b>GSTIN</b> : 27APGPM6700G1ZZ <br><br><br>
+                    <div class="input-group">
+                        <div>
+                        <b>Invoice No : </b> <span style="color: red; margin-left: 2%"><b>{{ challan_number }}</b></span>
+                        </div>
+                        <div class="input-group-prepend" style="margin-left: 2%">
+                            <span class="input-group-text" id="basic-addon1">Date</span>
+                        </div>
+                        <INPUT TYPE="date" NAME="date" id="date" class="form-control">
+                    </div>
+                </td>
+                <!-- <td colspan = "2">
                     <b>GSTIN</b> : 27APGPM6700G1ZZ <br> <b>PAN No</b> : APGPM6700G
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -45,11 +59,11 @@
                         </div>
                         <INPUT TYPE="date" NAME="dated" class="form-control">
                     </div>
-                </td>
+                </td> -->
             </tr> 
             
             <tr>
-                <td colspan = "3" style="vertical-align: middle">
+                <!-- <td colspan = "3" style="vertical-align: middle">
                     <div class="input-group">
                         <b>Challan No : </b> <span style="color: red; margin-left: 2%"><b>{{ challan_number }}</b></span>
                         <div class="input-group-prepend" style="margin-left: 2%">
@@ -58,8 +72,8 @@
                         <INPUT TYPE="date" NAME="date" id="date" class="form-control">
                         <b style="margin-left: 2%">Vendor No</b> : V0113<br>
                     </div>
-                </td>
-                <td colspan = "2">
+                </td> -->
+                <!-- <td colspan = "2">
                     <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1">PO No</span>
@@ -71,7 +85,7 @@
                             </div>
                             <INPUT TYPE="TEXT" NAME="jc-no" class="form-control" value="PPCQA/SC/00/18-19">
                     </div>
-                </td>
+                </td> -->
             </tr>
             
             <tr class="thead-dark text-center">
@@ -271,7 +285,6 @@
                 $('input[name=sgst]').val(data.sgst);
             }
         });
-        get_total_weight();
         get_grand_total();
     });
 
@@ -361,36 +374,36 @@
         get_total_weight();
     }
 
-    function get_total_weight(){
-        if ($("input[name=weight1").val() && $("input[name=weight2").val() && $("input[name=weight3").val())
-        {
-            var w1 = $("input[name=weight1").val();
-            var w2 = $("input[name=weight2").val();
-            var w3 = $("input[name=weight3").val();
+    // function get_total_weight(){
+    //     if ($("input[name=weight1").val() && $("input[name=weight2").val() && $("input[name=weight3").val())
+    //     {
+    //         var w1 = $("input[name=weight1").val();
+    //         var w2 = $("input[name=weight2").val();
+    //         var w3 = $("input[name=weight3").val();
 
-            $("input[name=total-weight]").val(parseFloat(w1) + parseFloat(w2) + parseFloat(w3));
-        }
-    }
+    //         $("input[name=total-weight]").val(parseFloat(w1) + parseFloat(w2) + parseFloat(w3));
+    //     }
+    // }
 
-    $("input[name=cgst]").on("keyup", function(){
-        get_grand_total();
-    });
+    // $("input[name=cgst]").on("keyup", function(){
+    //     get_grand_total();
+    // });
 
-    $("input[name=sgst]").on("keyup", function(){
-        get_grand_total();
-    });
+    // $("input[name=sgst]").on("keyup", function(){
+    //     get_grand_total();
+    // });
 
-    $("input[name=weight1]").on("keyup", function(){
-        get_total_weight();
-    });
+    // $("input[name=weight1]").on("keyup", function(){
+    //     get_total_weight();
+    // });
 
-    $("input[name=weight2]").on("keyup", function(){
-        get_total_weight();
-    });
+    // $("input[name=weight2]").on("keyup", function(){
+    //     get_total_weight();
+    // });
 
-    $("input[name=weight3]").on("keyup", function(){
-        get_total_weight();
-    });
+    // $("input[name=weight3]").on("keyup", function(){
+    //     get_total_weight();
+    // });
 
     function get_grand_total(){
         var cgst = $("input[name=cgst]").val();
@@ -419,30 +432,30 @@
                 "company_name"      : $("input[name=company-name]").val(),
                 "hsc_number"        : $("#get_hsc_value option:selected").val(),
                 "date"              : $("#date").val(),
-                "po_number"         : $("input[name=po-no]").val(),
-                "jc_number"         : $("input[name=jc-no]").val(),
+                // "po_number"         : $("input[name=po-no]").val(),
+                // "jc_number"         : $("input[name=jc-no]").val(),
                 "code1"             : $("#get_code_values1 option:selected").val(),
                 "vendor_name1"      : $(".value1").text(),
                 "rate1"             : $(".amount1").text(),
                 "amount1"           : $("input[name=amount1]").val(),
                 "quantity1"         : $("input[name=quantity1]").val(),
-                "weight1"           : $("input[name=weight1]").val(),
-                "weight2"           : $("input[name=weight2]").val(),
-                "weight3"           : $("input[name=weight3]").val(),
-                "bags1"             : $("input[name=bags1]").val(),
-                "bags2"             : $("input[name=bags2]").val(),
-                "bags3"             : $("input[name=bags3]").val(),
-                "drg_number"        : $("input[name=drg-no]").val(),
-                "melt_number"       : $("input[name=melt-no]").val(),
+                // "weight1"           : $("input[name=weight1]").val(),
+                // "weight2"           : $("input[name=weight2]").val(),
+                // "weight3"           : $("input[name=weight3]").val(),
+                // "bags1"             : $("input[name=bags1]").val(),
+                // "bags2"             : $("input[name=bags2]").val(),
+                // "bags3"             : $("input[name=bags3]").val(),
+                // "drg_number"        : $("input[name=drg-no]").val(),
+                // "melt_number"       : $("input[name=melt-no]").val(),
                 "cgst"              : $("input[name=cgst]").val(),
                 "cgst_amount"       : $("input[name=cgst-amount]").val(),
                 "sgst"              : $("input[name=sgst]").val(),
                 "sgst_amount"       : $("input[name=sgst-amount]").val(),
                 "total"             : $("input[name=total]").val(),
                 "grand_total"       : $("input[name=grand-total]").val(),
-                "total_weight"      : $("input[name=total-weight]").val(),
-                "your_challan"      : $("input[name=your-challan]").val(),
-                "dated"             : $("input[name=dated]").val(),
+                // "total_weight"      : $("input[name=total-weight]").val(),
+                // "your_challan"      : $("input[name=your-challan]").val(),
+                // "dated"             : $("input[name=dated]").val(),
                 "challan_number"    : "{{ challan_number }}",
             },
             dataType : "json",
