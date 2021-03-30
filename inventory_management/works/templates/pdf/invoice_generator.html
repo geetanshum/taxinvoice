@@ -47,11 +47,14 @@ body{
 
  <tr>
     <th colspan="5" style="text-align: center; padding: 0px">
-       <div style="text-align: center">
-            <h3 style="padding-top: 10px">DELIEVERY CHALLAN / INVOICE <span style="white-space: pre;">               MOB NO :- 9423222798 & 9881212348</span></h3>
-            <h1 style="font-style: 40px;">Vaibhav Engineering works</h1>
+        <h3 style="padding-top: 10px">TAX INVOICE <br></h3>
+       <div style="text-align: left;padding-left:10px ;">
+            <h1 style="font-style: 40px;">KALRA MOBILE WORLD</h1>
             <h3 style="padding-bottom: 10px">
-                    S.No.15/11/3, Old Warje Jakat Naka, Behind Kakde City, Karvanagar <span>Email: malivp94@gmail.com</span>
+                <b>GSTIN :</b> 27APGPM6700G1ZZ <br> 
+                   GAIL NO.05 Birla Fram Chowk Haripur Kalan Dehradun<br> 
+                   <span >MOB NO :- 9423222798 & 9881212348</span><br>
+                   <span>Email: malivp94@gmail.com</span>
             </h3>
        </div>
     </th>
@@ -59,62 +62,46 @@ body{
 
   <tr>
     <td colspan = "3"><b>To, M/s:</b> {{ company_name }} <br></td>
-    <td colspan = "2"><b>GSTIN :</b> 27APGPM6700G1ZZ <br> <b>PAN No :</b> APGPM6700G<br> <b>Your Challan: </b>{{ your_challan }} <br> <b>Dated: </b>{{ dated }}</td>
+    <td colspan = "2"><b>GSTIN :</b> 27APGPM6700G1ZZ <br>
+    <b>Invoice No : {{ challan_number }}</b> <b>Date :</b> {{ date }} <br>  <b>HSN/ SAC Code : </b>{{ hsc_number }}</td>
   </tr> 
 
   <tr>
-    <td colspan = "3"><b>Invoice No : {{ challan_number }}</b> <b>Date :</b> {{ date }} <br> <!--<b>Vendor No :</b> V0113<br>--> <b>HSN/ SAC Code : </b>{{ hsc_number }}</td>
-    <!-- <td colspan = "2"><b>PO No :</b> {{ po_number }} <br><b>JC No :</b> {{ jc_number }} </td> -->
+
   </tr>
 
   <tr>
     <th style="text-align: center; width: 70%">Particular</th> 
-    <th style="text-align: center; width: 20%">Weight(kg)</th>
+
     <th style="text-align: center; width: 20%">Quantity</th>
     <th style="text-align: center; width: 25%">Rate</th> 
     <th style="text-align: center; width: 25%">Amount</th>
   </tr>
 
   <tr>
-    <td>{{ code1 }}<br>{{ vendor_name1 }}</td>     
-    <td>{{ weight1 }}<br>({% if bags1 %}{{ bags1 }}{% else %}0{% endif %} Bags)</td>
+    <td>Model No:{{ code1 }}<br>Brand:{{ vendor_name1 }}<br>IMEI No:{{ imei_name1 }}<br>IMEI No:{{ imei_name2 }}</td>     
+
     <td>{{ quantity1 }}</td>
-    <td>{{ rate1 }}</td>
+    <td>{{ total }}</td>
     <td>{{ amount1 }}</td>
   </tr>
 
-  <tr>
-    <td>End Pieces:</td>     
-    <td>{{ weight2 }}<br>({% if bags2 %}{{ bags2 }}{% else %}0{% endif %} Bags)</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
-
-  <tr>  
-    <td>Scrap:</td>     
-    <td>{{ weight3 }}<br>({% if bags3 %}{{ bags3 }}{% else %}0{% endif %} Bags)</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-  </tr>
 
 <tr>
-  <td colspan="2" rowspan="2"><b>Drg No.:</b> {{ drg_number }}<br>
-  <b>Melt No.: </b> {{ melt_number }}</td>
-  <td colspan="2" style="text-align: right"><b>Total:</b></td>
-  <td>{{ total }}</td>
+
+  <td colspan="3" style="text-align: right"><b>Total:</b></td>
+  <td>{{ rate1 }}</td>
 </tr>
  
 <tr>
-   <td colspan="2" style="text-align: right"><b>CGST: </b>{{ cgst }} %<br><b>SGST:</b> {{ sgst }} %</td>
+   <td colspan="3" style="text-align: right"><b>CGST: </b>{{ cgst }} %<br><b>SGST:</b> {{ sgst }} %</td>
    <td>{{ cgst_amount|floatformat }}<br>{{ sgst_amount|floatformat }}</td>
    </td>
 </tr>
 
 <tr>
-  <td colspan="2"> <b>Total Weight :</b> {% if total_weight %}{{ total_weight }}{% else %}-{% endif %}</td>
-  <td colspan="2" style="text-align: right"> <b>Grand Total :</b></td>
+ 
+  <td colspan="3" style="text-align: right"> <b>Grand Total :</b></td>
   <td>{{ grand_total|floatformat }}</td>
 </tr>
 

@@ -8,8 +8,8 @@ class Work(models.Model):
 	name 		= models.CharField(max_length=200)
 	# amount 		= models.FloatField()
 	date_added	= models.DateTimeField(auto_now_add=True)
-	# po_number	= models.CharField(max_length=1000, blank=True, null=True)
-	# jc_number	= models.CharField(max_length=1000, blank=True, null=True)
+	imei1 = models.CharField(max_length=1000, blank=True, null=True)
+	imei2 = models.CharField(max_length=1000, blank=True, null=True)
 
 
 	def __str__(self):
@@ -48,6 +48,8 @@ class Report(models.Model):
 class MeltReport(models.Model):
 	code			= models.CharField(max_length=200, blank=True, null=True)
 	particular		= models.CharField(max_length=200)
+	imei1 = models.CharField(max_length=1000, blank=True, null=True)
+	imei2 = models.CharField(max_length=1000, blank=True, null=True)
 	challan_number	= models.IntegerField(unique=True)
 	date			= models.DateField()
 	quantity		= models.FloatField()
@@ -67,7 +69,7 @@ class QuantityRate(models.Model):
 class AddWorkForm(ModelForm):
 	class Meta:
 		model  = Work
-		fields = ['code', 'name']
+		fields = ['code', 'name','imei1','imei2']
 
 class AddHSCForm(ModelForm):
 	class Meta:

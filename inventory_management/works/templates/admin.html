@@ -47,12 +47,11 @@
             <table id="admin_table" class="table text-center table-bordered table-hover">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">Sr</th>
                     <th scope="col">Code</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">PO Number</th>
-                    <th scope="col">JC Number</th>
+                    <th scope="col">IMEI1</th>
+                    <th scope="col">IMEI2</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                   </tr>
@@ -63,9 +62,8 @@
                         <td>{{ forloop.counter }}</td>
                         <td>{{ work.code }}</td>
                         <td>{{ work.name }}</td>
-                        <td>{{ work.amount }}</td>
-                        <td>{{ work.po_number }}</td>
-                        <td>{{ work.jc_number }}</td>
+                        <td>{{ work.imei1 }}</td>
+                        <td>{{ work.imei2 }}</td>
                         <td>
                             <a class="btn btn-primary open-modal" data-url="{% url 'admin_edit' id=work.id %}" style="color: white">Edit</a>
                         </td>

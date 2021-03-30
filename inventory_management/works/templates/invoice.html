@@ -45,47 +45,11 @@
                         <INPUT TYPE="date" NAME="date" id="date" class="form-control">
                     </div>
                 </td>
-                <!-- <td colspan = "2">
-                    <b>GSTIN</b> : 27APGPM6700G1ZZ <br> <b>PAN No</b> : APGPM6700G
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Your Challan</span>
-                        </div>
-                        <INPUT TYPE="TEXT" NAME="your-challan" class="form-control">
-                    </div>
-                    <div class="input-group" style="margin-top: 2%"> 
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Dated</span>
-                        </div>
-                        <INPUT TYPE="date" NAME="dated" class="form-control">
-                    </div>
-                </td> -->
+         
             </tr> 
             
             <tr>
-                <!-- <td colspan = "3" style="vertical-align: middle">
-                    <div class="input-group">
-                        <b>Challan No : </b> <span style="color: red; margin-left: 2%"><b>{{ challan_number }}</b></span>
-                        <div class="input-group-prepend" style="margin-left: 2%">
-                            <span class="input-group-text" id="basic-addon1">Date</span>
-                        </div>
-                        <INPUT TYPE="date" NAME="date" id="date" class="form-control">
-                        <b style="margin-left: 2%">Vendor No</b> : V0113<br>
-                    </div>
-                </td> -->
-                <!-- <td colspan = "2">
-                    <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">PO No</span>
-                            </div>
-                            <INPUT TYPE="TEXT" NAME="po-no" class="form-control" value="SC-GST/PO/00/18-19"> 
-                        
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">JC No</span>
-                            </div>
-                            <INPUT TYPE="TEXT" NAME="jc-no" class="form-control" value="PPCQA/SC/00/18-19">
-                    </div>
-                </td> -->
+               
             </tr>
             
             <tr class="thead-dark text-center">
@@ -102,22 +66,15 @@
                     <select id="get_code_values1" class="form-control">
                         <option value="%">Select Code</option>
                         {% for work in works %} 
-                         <option value="{{ work.code }}">{{ work.code }}</option>
+                         <option value="{{ work.code }}">{{ work.name }}</option>
                         {% endfor %}
                     </select>
                     <div class="float-left">
                         <h5 class="value1" style="margin-top: 10%; margin-bottom: 0"></h5>
+                       
                     </div>
                 </td>            
-                <!-- <td>
-                    <INPUT class="form-control" TYPE="number" NAME="weight1" placeholder="Weight">
-                    <div class="input-group" style="margin-top: 2%">
-                        <INPUT class="form-control" TYPE="number" NAME="bags1" placeholder="">
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="basic-addon1">Bags</span>
-                        </div>
-                    </div>  
-                </td> -->
+            
                 <td><INPUT class="form-control" TYPE="number" NAME="quantity1" placeholder="Quantity"></td>
                 <td>
                     <!-- <div><h5 class="amount1"></h5></div> -->
@@ -127,62 +84,11 @@
                 <!-- <td colspan="2"><b class="float-right">Total: </b></td> -->
                 <td><INPUT TYPE="number" NAME="total" placeholder="total" class="form-control"></td>
             </tr>
-            
-            <!-- <tr class="text-center">
-                    <td style="text-align: left;">
-                        <h5>End Pieces:</h5>
-                    </td>            
-                    <td>
-                        <INPUT class="form-control" TYPE="number" NAME="weight2" placeholder="Weight">
-                        <div class="input-group" style="margin-top: 2%">
-                            <INPUT class="form-control" TYPE="number" NAME="bags2" placeholder="">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon1">Bags</span>
-                            </div>
-                        </div> 
-                    </td>
-                    <td><INPUT class="form-control" TYPE="number" NAME="quantity2" placeholder="Quantity"></td>
-                    <td>
-                        <div><h5 class="amount2"></h5></div>
-                    </td>
-                    <td><INPUT class="form-control" TYPE="number" NAME="amount2" placeholder="Amount"></td>
-                </tr>
-            
-                <tr class="text-center">
-                    <td style="text-align: left;">
-                        <h5>Scrap:</h5>
-                    </td>            
-                    <td>
-                        <INPUT class="form-control" TYPE="number" NAME="weight3" placeholder="Weight">
-                        <div class="input-group" style="margin-top: 2%">
-                            <INPUT class="form-control" TYPE="number" NAME="bags3" placeholder="">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon1">Bags</span>
-                            </div>
-                        </div> 
-                    </td> 
-                    <td><INPUT class="form-control" TYPE="number" NAME="quantity3" placeholder="Quantity"></td>
-                    <td>
-                        <div><h5 class="amount3"></h5></div>
-                    </td>
-                    <td><INPUT class="form-control" TYPE="number" NAME="amount3" placeholder="Amount"></td>
-                </tr>-->
-            
             <tr>
                 <td colspan="2" rowspan="2">
-                    <!-- <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">DRG No</span>
-                        </div>
-                        <INPUT TYPE="TEXT" NAME="drg-no" placeholder="DRG No." class="form-control">
-                    </div>
-
-                    <div class="input-group" style="margin-top: 2%">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Melt No</span>
-                        </div>
-                        <INPUT TYPE="TEXT" NAME="melt-no" placeholder="Melt No." class="form-control">
-                    </div> -->
+                    IMEI No.1<h5 class="value2" style=""></h5><br>
+                    IMEI No.1<h5 class="value3" style=""></h5>
+                
                 </td>
                 
             </tr>
@@ -220,9 +126,7 @@
             
             <tr>
                 <td colspan="2">
-                    <!-- <div class="input-group">
-                        <b>Total Weight</b> :<INPUT style="margin-left: 2%" TYPE="number" NAME="total-weight" class="form-control" placeholder="Total Weight">
-                    </div> -->
+                  
                 </td>
                 <td colspan="3">
                     <div class="input-group">
@@ -299,7 +203,9 @@
             success : function(data){
                 // alert(data.name);
                 $('.value1').text(data.name);
-                // $('.amount1').val(data.amount);
+                $('.value2').text(data.imei1);
+                $('.value3').text(data.imei2);
+                $('.amount1').val(data.amount);
             }
         });
         
@@ -325,14 +231,16 @@
             success : function(data){
                 // alert(data.name);
                 $('.value2').text(data.name);
-                // $('.amount2').text(data.amount);
+                $('.value2').text(data.imei1);
+                $('.value3').text(data.imei2);
+                $('.amount2').text(data.amount);
             }
         });
     });
 
     $("input[name=quantity2]").on("keyup", function(){
         var quantity = $(this).val();
-        // var weight = $("#weight2").val();
+    
         var amount = $(".amount2").text();
         $("input[name=amount2").val(amount * quantity);
 
@@ -349,9 +257,10 @@
             data : {"code" : selectedValue},
             dataType : "json",
             success : function(data){
-                // alert(data.name);
                 $('.value3').text(data.name);
-                // $('.amount3').text(data.amount);
+                $('.value2').text(data.imei1);
+                $('.value3').text(data.imei2);
+                $('.amount3').text(data.amount);
             }
         });
     });
@@ -409,29 +318,22 @@
                 "company_name"      : $("input[name=company-name]").val(),
                 "hsc_number"        : $("#get_hsc_value option:selected").val(),
                 "date"              : $("#date").val(),
-                // "po_number"         : $("input[name=po-no]").val(),
-                // "jc_number"         : $("input[name=jc-no]").val(),
                 "code1"             : $("#get_code_values1 option:selected").val(),
                 "vendor_name1"      : $(".value1").text(),
-                "rate1"             : $(".amount1").text(),
+                "imei_name1"      : $(".value2").text(),
+                "imei_name2"      : $(".value3").text(),
+                // "rate1"             : $(".amount1").text(),
+                "rate1"             : $("input[name=amount1]").val(),
                 "amount1"           : $("input[name=amount1]").val(),
                 "quantity1"         : $("input[name=quantity1]").val(),
-                // "weight1"           : $("input[name=weight1]").val(),
-                // "weight2"           : $("input[name=weight2]").val(),
-                // "weight3"           : $("input[name=weight3]").val(),
-                // "bags1"             : $("input[name=bags1]").val(),
-                // "bags2"             : $("input[name=bags2]").val(),
-                // "bags3"             : $("input[name=bags3]").val(),
-                // "drg_number"        : $("input[name=drg-no]").val(),
-                // "melt_number"       : $("input[name=melt-no]").val(),
+               
                 "cgst"              : $("input[name=cgst]").val(),
                 "cgst_amount"       : $("input[name=cgst-amount]").val(),
                 "sgst"              : $("input[name=sgst]").val(),
                 "sgst_amount"       : $("input[name=sgst-amount]").val(),
                 "total"             : $("input[name=total]").val(),
                 "grand_total"       : $("input[name=grand-total]").val(),
-                // "total_weight"      : $("input[name=total-weight]").val(),
-                // "your_challan"      : $("input[name=your-challan]").val(),
+
                 // "dated"             : $("input[name=dated]").val(),
                 "challan_number"    : "{{ challan_number }}",
             },

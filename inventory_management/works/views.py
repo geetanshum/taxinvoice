@@ -30,7 +30,7 @@ def render_to_pdf(template_src, context_dict={}):
     return HttpResponse("Error Rendering PDF", status=400)
 
 def fetch_resources(uri, rel):
-    """
+    """ 
     Convert HTML URIs to absolute system paths so xhtml2pdf can access those
     resources
     """
@@ -60,12 +60,15 @@ def generate_pdf(request):
         Helper function to generate pdf in case of ajax request
     '''
     context = request.GET.copy()
+    # print(context)
     request.session['context'] = context
     context['date'] = datetime.datetime.strptime(context.get('date'), '%Y-%m-%d').strftime('%d-%m-%Y')
     # context['dated'] = datetime.datetime.strptime(context.get('dated'), '%Y-%m-%d').strftime('%d-%m-%Y')
     context['amount_in_words'] = num2words.number_to_words(round(float(context.get('grand_total')), 2)) + ' only'
     code            = request.GET.get('code1')
     particular      = request.GET.get('vendor_name1')
+    imei1           = request.GET.get('imei_name1')
+    imei2           = request.GET.get('imei_name2')
     challan_number  = request.GET.get('challan_number')
     date            = request.GET.get('date')
     quantity        = request.GET.get('quantity1')
@@ -82,6 +85,8 @@ def generate_pdf(request):
         report = MeltReport(
                     code=code,
                     particular=particular,
+                    imei1=imei1,
+                    imei2=imei2,
                     challan_number=challan_number,
                     date=date,
                     quantity=quantity,
@@ -98,6 +103,8 @@ def generate_pdf(request):
         report = MeltReport(
                     code=code,
                     particular=particular,
+                    imei1=imei1,
+                    imei2=imei2,
                     challan_number=challan_number,
                     date=date,
                     quantity=quantity,
@@ -209,6 +216,8 @@ def get_code_values(request):
             'id': work.id,
             'code': work.code,
             'name': work.name,
+            'imei1': work.imei1,
+            'imei2': work.imei2,
         }
         return JsonResponse(data)
 
@@ -224,7 +233,7 @@ def get_hsc_values(request):
         return JsonResponse(data)
 
 def homepage(request):
-    return redirect('invoice_generator_assembly')
+    return redirect('invoice_generator_melt')
 
 def invoice_generator_melt(request):
     try:
