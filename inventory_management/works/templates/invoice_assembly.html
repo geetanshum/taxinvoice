@@ -20,7 +20,7 @@
                         </div>
                         <INPUT TYPE="TEXT" NAME="company-name" class="form-control" value="VANAZ ENGINEERS LTD, 85/1, PAUD ROAD, PUNE-38">  
                     </div> 
-                    <br><b>GSTIN</b> : 27AAACV6873B1ZA
+                  
                     <div class="input-group" style="margin-top: 2%">
                             <b>HSN Code:</b>
                             <select id="get_hsc_value" class="form-control" style="margin-left: 2%">
@@ -32,54 +32,26 @@
                     </div>
                 </td>
                 <td colspan = "2">
-                    <b>GSTIN</b> : 27APGPM6700G1ZZ <br> <b>PAN No</b> : APGPM6700G
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Your Challan</span>
-                        </div>
-                        <INPUT TYPE="TEXT" NAME="your-challan" class="form-control">
-                    </div>
-                    <div class="input-group" style="margin-top: 2%"> 
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Dated</span>
-                        </div>
-                        <INPUT TYPE="date" NAME="dated" class="form-control">
-                    </div>
-                </td>
-            </tr> 
-            
-            <tr>
-                <td colspan = "3" style="vertical-align: middle">
+                    <b>GSTIN</b> : 27APGPM6700G1ZZ <br><br>
                     <div class="input-group">
                         <b>Challan No : </b> <span style="color: red; margin-left: 2%"><b>{{ challan_number }}</b></span> 
                         <div class="input-group-prepend" style="margin-left: 2%">
                             <span class="input-group-text" id="basic-addon1">Date</span>
                         </div>
                         <INPUT TYPE="date" NAME="date" id="date" class="form-control">
-                        <b style="margin-left: 2%">Vendor No</b> : V0113
+                    
                     </div>
                 </td>
-                <td colspan = "2">
-                    <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">PO No</span>
-                            </div>
-                            <INPUT TYPE="TEXT" NAME="po-no" class="form-control"> 
-                        
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">JC No</span>
-                            </div>
-                            <INPUT TYPE="TEXT" NAME="jc-no" class="form-control">
-                    </div>
-                </td>
-            </tr>
-            
+            </tr> 
+
             <tr class="thead-dark text-center">
                 <th style="width: 30%">Particular</th> 
-                <th>Weight(kg)</th>
+  
                 <th>Qty</th>
                 <th>Rate</th> 
+                <th>Total</th>
                 <th>Amount</th>
+                
             </tr>
             
             <tr class="text-center" id="after-this1">
@@ -94,11 +66,9 @@
                         <h5 class="value1" style="margin-top: 10%; margin-bottom: 0"></h5>
                     </div>
                     <br>
-                    <INPUT class="form-control po_number1" TYPE="text" NAME="po_number" placeholder="PO Number">
-                    <br>
-                    <INPUT class="form-control jc_number1" TYPE="text" NAME="jc_number" placeholder="JC Number">
+                 
                 </td>            
-                <td>
+                <!-- <td>
                     <INPUT class="form-control" TYPE="number" NAME="weight1" placeholder="Weight" onkeyup="get_total_weight(1)">
                     <div class="input-group" style="margin-top: 2%">
                         <INPUT class="form-control" TYPE="number" NAME="bags1" placeholder="">
@@ -106,10 +76,12 @@
                             <span class="input-group-text" id="basic-addon1">Bags/ Box</span>
                         </div>
                     </div>
-                </td>
+                </td> -->
                 <td><INPUT class="form-control" TYPE="number" NAME="quantity1" placeholder="Quantity"></td>
+                <td><INPUT TYPE="number" NAME="total" placeholder="total" class="form-control"></td>
                 <td>
-                    <div><h5 class="amount1"></h5></div>
+                    <!-- <div><h5 class="amount1"></h5></div> -->
+                    <INPUT class="form-control amount1" TYPE="number" NAME="amount1" placeholder="Amount">
                 </td>
                 <td class="input-group">
                     <INPUT class="form-control" TYPE="number" NAME="amount1" placeholder="Amount">
@@ -120,7 +92,7 @@
             
             <tr>
                 <td colspan="2" rowspan="2">
-                    <div class="input-group">
+                    <!-- <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">DRG No</span>
                         </div>
@@ -132,10 +104,10 @@
                             <span class="input-group-text" id="basic-addon1">Melt No</span>
                         </div>
                         <INPUT TYPE="TEXT" NAME="melt-no" placeholder="Melt No." class="form-control">
-                    </div>
+                    </div> -->
                 </td>
-                <td colspan="2"><b class="float-right">Total: </b></td>
-                <td><INPUT TYPE="number" NAME="total" placeholder="total" class="form-control"></td>
+                <!-- <td colspan="2"><b class="float-right">Total: </b></td>
+                <td><INPUT TYPE="number" NAME="total" placeholder="total" class="form-control"></td> -->
             </tr>
              
             <tr>
@@ -171,9 +143,9 @@
             
             <tr>
                 <td colspan="2">
-                    <div class="input-group">
+                    <!-- <div class="input-group">
                         <b>Total Weight</b> :<INPUT style="margin-left: 2%" TYPE="number" NAME="total-weight" class="form-control" placeholder="Total Weight">
-                    </div>
+                    </div> -->
                 </td>
                 <td colspan="3">
                     <div class="input-group">
@@ -234,23 +206,13 @@
                     <div class="float-left">
                         <h5 class="value` + id + `" style="margin-top: 10%; margin-bottom: 0"></h5>
                     </div>
-                    <br>
-                    <INPUT class="form-control po_number` + id + `" TYPE="text" NAME="po_number" placeholder="PO Number">
-                    <br>
-                    <INPUT class="form-control jc_number` + id + `" TYPE="text" NAME="jc_number" placeholder="JC Number">
                 </td>
-                <td>
-                    <INPUT class="form-control" TYPE="number" NAME="weight` + id + `" placeholder="Weight"  onkeyup="get_total_weight(` + id + `)">
-                    <div class="input-group" style="margin-top: 2%">
-                        <INPUT class="form-control" TYPE="number" NAME="bags` + id + `" placeholder="">
-                        <div class="input-group-append">
-                            <span class="input-group-text" id="basic-addon1">Bags/ Box</span>
-                        </div>
-                    </div>
-                </td>
+            
                 <td><INPUT class="form-control" TYPE="number" NAME="quantity` + id + `" placeholder="Quantity"></td>
+                <td><INPUT TYPE="number" NAME="total` + id + `" placeholder="total" class="form-control"></td>
                 <td>
-                    <div><h5 class="amount` + id + `"></h5></div>
+                    
+                    <INPUT class="form-control amount` + id + `" TYPE="number" NAME="amount1" placeholder="Amount">
                 </td>
                 <td class="input-group">
                     <INPUT class="form-control" TYPE="number" NAME="amount` + id + `" placeholder="Amount">
@@ -305,14 +267,12 @@
                 // alert(data.name);
                 $('.value' + id).text(data.name);
                 $('.amount' + id).text(data.amount);
-                $('.po_number' + id).val(data.po_number);
-                $('.jc_number' + id).val(data.jc_number);
+           
             }
         });
 
         $("input[name=quantity" + id + "]").on("keyup", function(){
             var quantity = $(this).val();
-            var weight = $("#weight" + id).val();
             var amount = $(".amount" + id).text();
 		 var amount = amount * quantity;
             $("input[name=amount"  + id + "]").val(amount.toFixed(2));
@@ -332,23 +292,23 @@
             }
         }
         $("input[name=total]").val(total);
-        get_total_weight(id);
+
     }
 
-    function get_total_weight(id){
-        var total = 0;
-        for (i = 1; i <= parseInt(id); i++){
-            if($("input[name=weight" + i + "]").val()){
-                total += parseFloat($("input[name=weight" + i + "]").val());
-            }
-            else{
-                total += 0;
-            }
-        }
-        $("input[name=total-weight]").val(total);
+    // function get_total_weight(id){
+    //     var total = 0;
+    //     for (i = 1; i <= parseInt(id); i++){
+    //         if($("input[name=weight" + i + "]").val()){
+    //             total += parseFloat($("input[name=weight" + i + "]").val());
+    //         }
+    //         else{
+    //             total += 0;
+    //         }
+    //     }
+    //     $("input[name=total-weight]").val(total);
         
-        get_grand_total(id);
-    }
+    //     get_grand_total(id);
+    // }
 
     function get_grand_total(id){
         var cgst = $("input[name=cgst]").val();

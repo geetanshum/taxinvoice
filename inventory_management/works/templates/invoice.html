@@ -33,7 +33,7 @@
                             </select>
                     </div>
                 </td>
-                <td colspan = "2" style="vertical-align: middle">
+                <td colspan = "3" style="vertical-align: middle">
                     <b>GSTIN</b> : 27APGPM6700G1ZZ <br><br><br>
                     <div class="input-group">
                         <div>
@@ -91,9 +91,9 @@
             <tr class="thead-dark text-center">
                 <th style="width: 30%">Particular</th> 
                 <th>Qty</th>
-                <th>Rate</th>
-                <th>Amount</th> 
                 <th>Total</th>
+                <th>Amount</th> 
+                <th>Rate</th>
 
             </tr>
             
@@ -120,8 +120,8 @@
                 </td> -->
                 <td><INPUT class="form-control" TYPE="number" NAME="quantity1" placeholder="Quantity"></td>
                 <td>
-                    <div><h5 class="amount1"></h5></div>
-                    <!-- <INPUT class="amount1" TYPE="number" NAME="amount1" placeholder="Amount"> -->
+                    <!-- <div><h5 class="amount1"></h5></div> -->
+                    <INPUT class="form-control amount1" TYPE="number" NAME="amount1" placeholder="Amount">
                 </td>
                 <td><INPUT class="form-control" TYPE="number" NAME="amount1" placeholder="Amount"></td>
                 <!-- <td colspan="2"><b class="float-right">Total: </b></td> -->
@@ -299,16 +299,15 @@
             success : function(data){
                 // alert(data.name);
                 $('.value1').text(data.name);
-                $('.amount1').text(data.amount);
+                // $('.amount1').val(data.amount);
             }
         });
-        get_total_weight();
+        
     });
 
     $("input[name=quantity1]").on("keyup", function(){
         var quantity = $(this).val();
-        var weight = $("#weight1").val();
-        var amount = $(".amount1").text();
+        var amount = $(".amount1").val();
         var amount = amount * quantity;
         $("input[name=amount1]").val(amount.toFixed(2));
 
@@ -326,7 +325,7 @@
             success : function(data){
                 // alert(data.name);
                 $('.value2').text(data.name);
-                $('.amount2').text(data.amount);
+                // $('.amount2').text(data.amount);
             }
         });
     });
@@ -352,7 +351,7 @@
             success : function(data){
                 // alert(data.name);
                 $('.value3').text(data.name);
-                $('.amount3').text(data.amount);
+                // $('.amount3').text(data.amount);
             }
         });
     });
@@ -368,42 +367,20 @@
 
     function get_total(){
         var a1 = $("input[name=amount1").val();
-
-        $("input[name=total]").val(parseInt(a1));
+        var d1 = a1/(1+0.18);
+        $("input[name=total]").val(parseInt(d1));
         get_grand_total();
-        get_total_weight();
+
     }
 
-    // function get_total_weight(){
-    //     if ($("input[name=weight1").val() && $("input[name=weight2").val() && $("input[name=weight3").val())
-    //     {
-    //         var w1 = $("input[name=weight1").val();
-    //         var w2 = $("input[name=weight2").val();
-    //         var w3 = $("input[name=weight3").val();
 
-    //         $("input[name=total-weight]").val(parseFloat(w1) + parseFloat(w2) + parseFloat(w3));
-    //     }
-    // }
+    $("input[name=cgst]").on("keyup", function(){
+        get_grand_total();
+    });
 
-    // $("input[name=cgst]").on("keyup", function(){
-    //     get_grand_total();
-    // });
-
-    // $("input[name=sgst]").on("keyup", function(){
-    //     get_grand_total();
-    // });
-
-    // $("input[name=weight1]").on("keyup", function(){
-    //     get_total_weight();
-    // });
-
-    // $("input[name=weight2]").on("keyup", function(){
-    //     get_total_weight();
-    // });
-
-    // $("input[name=weight3]").on("keyup", function(){
-    //     get_total_weight();
-    // });
+    $("input[name=sgst]").on("keyup", function(){
+        get_grand_total();
+    });
 
     function get_grand_total(){
         var cgst = $("input[name=cgst]").val();
@@ -417,10 +394,10 @@
         $("input[name=sgst-amount]").val(sgst_amount.toFixed(2));
 
         if($("input[name=cgst").val() && $("input[name=sgst").val()){
-            var cgst = $("input[name=cgst").val();
-            var sgst = $("input[name=sgst").val();
+            var cgst = $("input[name=cgst-amount]").val();
+            var sgst = $("input[name=sgst-amount]").val();
             var total = $("input[name=total").val();
-            $("input[name=grand-total").val((((parseFloat(cgst) + parseFloat(sgst)) / 100) * parseFloat(total)) + parseFloat(total));
+            $("input[name=grand-total").val(Math.ceil((((parseFloat(cgst) + parseFloat(sgst))) + parseFloat(total))));
         }
     }
 

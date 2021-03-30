@@ -6,10 +6,10 @@ from django import forms
 class Work(models.Model):
 	code 		= models.CharField(max_length=200, unique=True)
 	name 		= models.CharField(max_length=200)
-	amount 		= models.FloatField()
+	# amount 		= models.FloatField()
 	date_added	= models.DateTimeField(auto_now_add=True)
-	po_number	= models.CharField(max_length=1000, blank=True, null=True)
-	jc_number	= models.CharField(max_length=1000, blank=True, null=True)
+	# po_number	= models.CharField(max_length=1000, blank=True, null=True)
+	# jc_number	= models.CharField(max_length=1000, blank=True, null=True)
 
 
 	def __str__(self):
@@ -67,7 +67,7 @@ class QuantityRate(models.Model):
 class AddWorkForm(ModelForm):
 	class Meta:
 		model  = Work
-		fields = ['code', 'name', 'amount', 'po_number', 'jc_number']
+		fields = ['code', 'name']
 
 class AddHSCForm(ModelForm):
 	class Meta:
@@ -85,7 +85,7 @@ class AddMeltChallanForm(ModelForm):
 		fields = ['melt_challan_number']
 
 YEAR_CHOICES = []
-for year in range(2018, datetime.datetime.now().year + 1):
+for year in range(2020, datetime.datetime.now().year + 1):
     YEAR_CHOICES.append((year, year))
 
 MONTHS_CHOICES = tuple(zip(range(1,13), (calendar.month_name[i] for i in range(1,13))))
