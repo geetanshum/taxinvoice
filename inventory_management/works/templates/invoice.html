@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Invoice | Melt{% endblock %}
+{% block title %}Kalara Mobile World    | Invoice{% endblock %}
 {% block content %}
 <table class="table table-bordered table-hover table-responsive">
 
@@ -34,12 +34,13 @@
                     </div>
                 </td>
                 <td colspan = "3" style="vertical-align: middle">
-                    <b>GSTIN</b> : 27APGPM6700G1ZZ <br><br><br>
+                    <b>GSTIN</b> : 27APGPM6700G1ZZ <br><br>
+                        <b style="font-size:20px;">Invoice Number : <span style="color: red;"><b>{{ challan_number }}</b></span></b>
+                    </div>
+                    <br><br>
                     <div class="input-group">
-                        <div>
-                        <b>Invoice No : </b> <span style="color: red; margin-left: 2%"><b>{{ challan_number }}</b></span>
-                        </div>
-                        <div class="input-group-prepend" style="margin-left: 2%">
+                       
+                        <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">Date</span>
                         </div>
                         <INPUT TYPE="date" NAME="date" id="date" class="form-control">
@@ -78,16 +79,16 @@
                 <td><INPUT class="form-control" TYPE="number" NAME="quantity1" placeholder="Quantity"></td>
                 <td>
                     <!-- <div><h5 class="amount1"></h5></div> -->
-                    <INPUT class="form-control amount1" TYPE="number" NAME="amount1" placeholder="Amount">
+                    <INPUT class="form-control amount1" TYPE="number" NAME="amount1" placeholder="Total">
                 </td>
                 <td><INPUT class="form-control" TYPE="number" NAME="amount1" placeholder="Amount"></td>
                 <!-- <td colspan="2"><b class="float-right">Total: </b></td> -->
-                <td><INPUT TYPE="number" NAME="total" placeholder="total" class="form-control"></td>
+                <td><INPUT TYPE="number" NAME="total" placeholder="Rate" class="form-control"></td>
             </tr>
             <tr>
                 <td colspan="2" rowspan="2">
-                    IMEI No.1<h5 class="value2" style=""></h5><br>
-                    IMEI No.1<h5 class="value3" style=""></h5>
+                    IMEI No.1<h5 class="value2" ></h5><br>
+                    IMEI No.1<h5 class="value3" ></h5>
                 
                 </td>
                 
@@ -151,7 +152,7 @@
                     <br>
                     <br>
                     <div style="vertical-align: bottom !important; text-align: center">
-                        For Vaibhav Engineering Works
+                        For Kalara Mobile World
                     </div>
                 </td>
             </tr>
@@ -215,73 +216,19 @@
         var quantity = $(this).val();
         var amount = $(".amount1").val();
         var amount = amount * quantity;
-        $("input[name=amount1]").val(amount.toFixed(2));
+        $("input[name=amount1]").val(amount);
 
         get_total();
     });
 
-    // For second work
-    $("#get_code_values2").on("change", function(){
-        var selectedValue = $(this).val();
-        $.ajax({
-            url : "{% url 'get_code_values' %}",
-            type : "GET",
-            data : {"code" : selectedValue},
-            dataType : "json",
-            success : function(data){
-                // alert(data.name);
-                $('.value2').text(data.name);
-                $('.value2').text(data.imei1);
-                $('.value3').text(data.imei2);
-                $('.amount2').text(data.amount);
-            }
-        });
-    });
-
-    $("input[name=quantity2]").on("keyup", function(){
-        var quantity = $(this).val();
-    
-        var amount = $(".amount2").text();
-        $("input[name=amount2").val(amount * quantity);
-
-        get_total();
-    });
-
-
-    // For third work
-    $("#get_code_values3").on("change", function(){
-        var selectedValue = $(this).val();
-        $.ajax({
-            url : "{% url 'get_code_values' %}",
-            type : "GET",
-            data : {"code" : selectedValue},
-            dataType : "json",
-            success : function(data){
-                $('.value3').text(data.name);
-                $('.value2').text(data.imei1);
-                $('.value3').text(data.imei2);
-                $('.amount3').text(data.amount);
-            }
-        });
-    });
-
-    $("input[name=quantity3]").on("keyup", function(){
-        var quantity = $(this).val();
-        var weight = $("#weight3").val();
-        var amount = $(".amount3").text();
-        $("input[name=amount3").val(amount * quantity);
-        
-        get_total();
-    });
 
     function get_total(){
         var a1 = $("input[name=amount1").val();
         var d1 = a1/(1+0.18);
-        $("input[name=total]").val(parseInt(d1));
+        $("input[name=total]").val(d1.toFixed(2));
         get_grand_total();
 
     }
-
 
     $("input[name=cgst]").on("keyup", function(){
         get_grand_total();
@@ -293,6 +240,7 @@
 
     function get_grand_total(){
         var cgst = $("input[name=cgst]").val();
+        // alert(cgst);
         var total = $("input[name=total]").val();
         var cgst_amount = (parseFloat(cgst) / 100) * parseFloat(total);
         $("input[name=cgst-amount]").val(cgst_amount.toFixed(2));

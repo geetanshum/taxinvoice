@@ -74,10 +74,11 @@ def generate_pdf(request):
     quantity        = request.GET.get('quantity1')
     rate            = request.GET.get('rate1')
     amount          = request.GET.get('amount1')
-    # weight          = request.GET.get('weight1')
-    # scrap_weight    = request.GET.get('weight2')
-    # end_pieces      = request.GET.get('weight3')
-    # total_weight    = request.GET.get('total_weight')
+    hsc_number      = request.GET.get('hsc_number')
+    cgst_amount     = request.GET.get('cgst_amount')
+    sgst_amount     = request.GET.get('sgst_amount')
+    total           = request.GET.get('total')
+    
 
     # If user enters the same challan number then the previous record for that paricular challan number
     # is deleted and new record is overriden onto the old one
@@ -92,6 +93,11 @@ def generate_pdf(request):
                     quantity=quantity,
                     rate=rate,
                     amount=amount,
+                    hsc_number=hsc_number,
+                    cgst_amount=cgst_amount,
+                    sgst_amount=sgst_amount,
+                    total=total,
+                    
                 )
         report.save()
 
@@ -110,6 +116,10 @@ def generate_pdf(request):
                     quantity=quantity,
                     rate=rate,
                     amount=amount,
+                    hsc_number=hsc_number,
+                    cgst_amount=cgst_amount,
+                    sgst_amount=sgst_amount,
+                    total=total,
                 )
         report.save()
 
@@ -495,12 +505,14 @@ def report_assembly(request):
         form = AssemblyReportForm()
     return render(request, 'report_assembly.html', {'form': form})
 
+
+
 def excel_export_melt(reports, filename):
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
     response['Content-Disposition'] = "attachment; filename=" + filename + ".xlsx"
 
     book = Workbook(response, {'in_memory': True})
-    sheet = book.add_worksheet('Report')
+    sheet = book.add_worksheet('Monthly Report')
 
     for col in range(50):
         sheet.set_column(col, col, 6)
@@ -510,7 +522,7 @@ def excel_export_melt(reports, filename):
         'border': 1,
         'align': 'center',
         'valign': 'vcenter',
-        'font_size': 6
+        'font_size': 10
     })
 
     heading = book.add_format({
@@ -518,72 +530,63 @@ def excel_export_melt(reports, filename):
         'border': 1,
         'align': 'center',
         'valign': 'vcenter',
-        'font_size': 6
+        'font_size': 10
     })
 
     data = book.add_format({
         'border': 1,
         'align': 'center',
         'valign': 'vcenter',
-        'font_size': 6
+        'font_size': 8
     })
 
     heading2 = book.add_format({
         'bold': 1,
         'border': 1,
-        'font_size': 6
+        'font_size': 10
     })
 
     # Table headings
     sheet.merge_range(
-            'A1:I4', 
-            'DELIVERY CHALLAN / INVOICE \t \t \tMob:9423222798, 9881212348\n\
-             VAIBHAV ENGINEERING WORKS\nS.No.15/11/3,\
-             Old Warje Jakat Naka, Behind Kakde City, Karvanagar,\
-             Pune-411052.', 
+            'A1:K4', 
+            'MONTHLY INVOICE EXCEL   \
+            \nKalra Mobile World \
+            \n mobile Number:9423222798, 9881212348\n\
+            Gali no.05 Birla Fram Chowk Haripur kalan Dehradun,Uttrakhand\
+            Pin-249205.', 
             merge_format)
 
     sheet.merge_range(
-            'A5:F6', 
-            'To, M/S Vanaz Engineers Ltd. 85/1, Paud road, Pune-38\n \
-             GSTIN / Unique ID: 27AAACV6873B1ZA \t State Code:',
+            'A5:F8', 
+            'To,Advocate, Bharat Mata Puram, Shaptrishi\n \
+             GSTIN:27AAACV6873B1ZA \t Uttrakhand',
             heading2
             )
 
     sheet.merge_range(
-            'G5:I6', 
-            'GSTI-27APGPM-6700G1ZZ\n \
-             \nPAN NO:-APGPM6700G',
+            'G5:K8', 
+            'GSTI-27APGPM-6700G1ZZ\
+            \nPAN NO:-APGPM6700G',
             heading2
             )
 
-    sheet.merge_range(
-            'A7:D8', 
-            'INVOICE Number: \t \t \tDate: \n\
-             \nVendor Code: V0113',
-            heading2
-            )
+ 
 
-    sheet.merge_range(
-            'E7:I8', 
-            'P.O. Number: \t \t \tDated:\
-            \nJ.C. Number: \t \t \tDated:\n\
-            \nOur Challan Number',
-            heading2
-            )
+
 
     sheet.merge_range('A9:A11', 'SR\nNO', heading)
     sheet.merge_range('B9:D11', 'PARTICULAR', heading)
-    sheet.merge_range('E9:E11', 'OUR CHALLAN\nNUMBER', heading)
-    sheet.merge_range('F9:F11', 'CHALLAN\nDATE', heading)
+    sheet.merge_range('E9:E11', 'OUR INVOICE NUMBER', heading)
+    sheet.merge_range('F9:F11', 'INVOICE DATE', heading)
     sheet.merge_range('G9:G11', 'QUANTITY', heading)
-    sheet.merge_range('H9:H11', 'RATE', heading)
-    sheet.merge_range('I9:I11', 'AMOUNT', heading)
+    sheet.merge_range('H9:H11', 'TAXABLE AMOUNT \n (GST 18%)', heading)
+    sheet.merge_range('I9:I11', 'CGST AMOUNT \n (GST 9%)', heading)
+    sheet.merge_range('J9:J11', 'SGST AMOUNT \n (GST 9%)', heading)
+    sheet.merge_range('K9:K11', 'TAX AMOUNT', heading)
 
-    row = 12
+    row = 10
     total = 0
     for index, report in enumerate(reports):
-        total += report.amount
         col = 0
         row += 1
         sheet.write(row, col, index + 1, data)
@@ -592,39 +595,23 @@ def excel_export_melt(reports, filename):
         col += 3
         sheet.write(row, col, report.challan_number, data)
         col += 1
-        sheet.write(row, col, report.date, data)
+        sheet.write(row, col, report.date.strftime('%d/%m/%Y'), data)
         col += 1
         sheet.write(row, col, report.quantity, data)
         col += 1
-        sheet.write(row, col, report.rate, data)
+        sheet.write(row, col, report.total, data)
+        col += 1
+        sheet.write(row, col, report.cgst_amount, data)
+        col += 1
+        sheet.write(row, col, report.sgst_amount, data)
         col += 1
         sheet.write(row, col, report.amount, data)
 
     # row += 2
-    col -= 1
-
-    cgst = (0.09 * total)
-    sgst = (0.09 * total)
-    grand_total = total + cgst + sgst
-    words = num2words.number_to_words(round(grand_total, 2))
+ 
+    col -= 5
     row += 1
-    sheet.write(row, col, 'Total: ', data)
-    col += 1
-    sheet.write(row, col, total, data)
-    row += 1
-    sheet.write(row, col - 1, 'CGST: ', data)
-    sheet.write(row, col, cgst, data)
-    row += 1
-    sheet.write(row, col - 1, 'SGST: ', data)
-    sheet.write(row, col, sgst, data)
-    row += 2
-    sheet.write(row, col - 1, 'Grand Total: ', heading)
-    sheet.write(row, col, grand_total, data)
-    row += 1
-    sheet.merge_range(row, 0, row, 8, 'Rs. ' + words + ' only', data)
-    row += 2
-    sheet.merge_range(row, 0, row + 2, 5, 'Receives the above mentioned good in good working condition \n\n\nSend Through \t \t \tReceived By', data)
-    sheet.merge_range(row, 6, row + 2, 8, ' For Vaibhav Engineering Works', data)
+    sheet.write(row, col, 'TOTAL', heading2)
 
     sheet.conditional_format(9, 0, row, 8, {'type': 'blanks', 'format' : data})
     book.close()
@@ -640,6 +627,7 @@ def report_melt(request):
                         date__month=request.POST.get('month')
                     )
             report = MeltReport.objects.filter(query)
+
             return excel_export_melt(report, 'Melt_Report_' + calendar.month_name[int(request.POST.get('month'))] + '_' + request.POST.get('year'))
     else:
         form = MeltReportForm()

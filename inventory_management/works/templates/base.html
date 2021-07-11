@@ -17,7 +17,7 @@
         <nav class="navbar navbar-dark bg-dark navbar-expand-sm">
           <!-- <a class="navbar-brand" href="/"><img src="{% static 'images/logo.png' %}" class="img-fluid" style="width: 200px"></a> -->
           <!-- Power<span style="color: red">Pack</span> Fitness Club -->
-          <a href="{% url 'homepage' %}" class="navbar-brand">Invoice Generator</a>
+          <a href="{% url 'homepage' %}" class="navbar-brand">Kalara Mobile World Invoice Generator</a>
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -52,9 +52,9 @@
                 <li class="nav-item {% if request.resolver_match.url_name == 'invoice_generator_melt' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'invoice_generator_melt'%}">Invoice (Melt)</a>
                 </li>
-                <li class="nav-item {% if request.resolver_match.url_name == 'invoice_generator_assembly' %} active {% endif %}">
+                <!-- <li class="nav-item {% if request.resolver_match.url_name == 'invoice_generator_assembly' %} active {% endif %}">
                     <a class="nav-link" href="{% url 'invoice_generator_assembly'%}">Invoice (Assembly)</a>
-                </li>
+                </li> -->
             </ul>
             {% endif %}
           </div>

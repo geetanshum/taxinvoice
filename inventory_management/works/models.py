@@ -53,12 +53,12 @@ class MeltReport(models.Model):
 	challan_number	= models.IntegerField(unique=True)
 	date			= models.DateField()
 	quantity		= models.FloatField()
-	rate			= models.FloatField()
+	rate			= models.FloatField(blank=True, null=True)
 	amount			= models.FloatField()
-	weight			= models.CharField(max_length=100, blank=True, null=True)
-	scrap_weight	= models.CharField(max_length=100, blank=True, null=True)
-	end_pieces		= models.CharField(max_length=100, blank=True, null=True)
-	total_weight	= models.CharField(max_length=100, blank=True, null=True)
+	hsc_number		= models.CharField(max_length=200,blank=True,null=True)
+	cgst_amount		= models.FloatField(blank=True, null=True)
+	sgst_amount		= models.FloatField(blank=True, null=True)
+	total			= models.FloatField(blank=True, null=True)
 
 class QuantityRate(models.Model):
 	report 			= models.ManyToManyField(Report)
