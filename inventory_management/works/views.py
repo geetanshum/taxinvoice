@@ -20,7 +20,10 @@ def render_to_pdf(template_src, context_dict={}):
     '''
         Helper function to generate pdf from html
     '''
-    context_dict['logo'] = os.path.join(settings.STATIC_ROOT, 'img', 'vew.jpeg')
+    context_dict['logo'] = os.path.join(settings.STATIC_ROOT, 'static', 'img/logo.png')
+    context_dict['apple'] = os.path.join(settings.STATIC_ROOT, 'static', 'img/apple.png')
+    context_dict['oppo'] = os.path.join(settings.STATIC_ROOT, 'static', 'img/oppo.png')
+    context_dict['samsung'] = os.path.join(settings.STATIC_ROOT, 'static', 'img/samsung.png')
     template = get_template(template_src)
     html  = template.render(context_dict)
     result = BytesIO()
@@ -761,5 +764,8 @@ def stock_report_monthly(request):
 def test(request):
     from django.contrib.staticfiles.templatetags.staticfiles import static
     context_dict = {}
-    context_dict['logo'] = static('vew.jpeg')
-    return render(request, 'pdf/invoice_generator_assembly.html', context_dict)
+    context_dict['logo'] = static('img/logo.png')
+    context_dict['apple'] = static('img/apple.png')
+    context_dict['samsung'] = static('img/samsung.png')
+    context_dict['oppo'] = static('img/oppo.png')
+    return render(request, 'pdf/invoice_generator.html', context_dict)
